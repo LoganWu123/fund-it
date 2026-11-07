@@ -1,19 +1,31 @@
-# Fund it · Discover Homes
+# Fund it · Homes, people and a funding plan
 
-The existing project dashboard now includes **Discover Homes**, a swipe-based home and sample-agent browser. Changes are isolated on `codex/discover-homes`.
+The existing dashboard now includes **Discover Homes**: seven homes with exact-property listing photos, four real Orange County agent profiles with sourced public review scores, a preference-rated map, and browser-local saved collections. Work is isolated on `codex/discover-homes`.
+
+Run the committed static website without installing anything:
 
 ```sh
 python3 -m http.server 8010 --bind 127.0.0.1 --directory dist
 ```
 
-Open `http://127.0.0.1:8010/#discover`. No build or dependencies are required.
+Open `http://127.0.0.1:8010/#discover`. Homes, Agents, Map and Saved share the same shortlist. Home details include funding research links and affordability assumptions. No contact requests are sent.
 
-Homes support city/budget/bedroom/type filters, pass/save/undo, browser-local saved collections and a details dialog with affordability assumptions and funding research links. Mouse/touch swipes, buttons and keyboard arrows are supported. The dashboard and all existing sections remain available.
+The cream, sage and lavender UI retains the dashboard and adds Magic UI Text Animate, Icon Cloud and Globe components. The small React UI package is prebuilt into `dist/`; only developers changing those components need Node 22+ and pnpm:
 
-The **Agents** tab contains three fictional demonstration profiles and a transparent comparison rubric for local expertise, communication, fee transparency and buyer support. No real agent credential, endorsement, review or performance claim is made. Saving a card never contacts anyone.
+```sh
+cd ui
+pnpm install --frozen-lockfile
+pnpm run build
+pnpm exec tsc --noEmit
+```
 
-The property dataset is a dated research snapshot. Actual-property photo URLs and their source pages are recorded separately. Missing photos use a labeled placeholder; known sold/off-market research conflicts are excluded from the Discover deck. This is a prototype, not a current inventory, loan approval or financial recommendation.
+Checks from the repository root:
 
-See [feature behavior, photo URLs and verification limits](docs/DISCOVER.md).
+```sh
+python3 -m unittest discover -s scripts -p 'test_*.py' -v
+node scripts/test_match_engine.cjs
+```
 
-Validation: `python3 -m unittest discover -s scripts -p 'test_*.py' -v`. Browser checks cover saving, collection persistence, home and agent details, filtering, pass/undo, mobile layout and JavaScript errors.
+Map coordinates come from the October 2026 source snapshot. Home stars measure preference fit; agent stars are public Realtor.com review aggregates. Both show their meaning and sources. Prices and availability are unverified snapshots, not live inventory. Project budgets are fictional planning scenarios and their photographs are representative. No award, loan approval or agent license verification is implied.
+
+See [behavior, photo and agent sources, scoring and deployment status](docs/DISCOVER.md).

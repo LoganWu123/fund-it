@@ -1,0 +1,15 @@
+const assert = require('node:assert/strict');
+const match = require('../dist/match-engine.js');
+const home = {price: 700000, city:'Irvine', bedrooms:2, bathrooms:2, property_type:'condo', hoa:null};
+assert.equal(match(home, {maxPrice:800000,city:'Irvine',beds:2}).score, 5);
+assert.equal(match({...home,price:1600000}, {maxPrice:800000}).score, 0);
+assert.equal(match(home, {}).score, null);
+const unknown = match(home, {maxPrice:800000,maxHoa:0});
+assert.equal(unknown.score, 5);
+assert.equal(unknown.coverage, 88);
+assert.equal(unknown.criteria.find(c=>c.label==='HOA').ratio, null);
+assert.equal(match({...home,hoa:200},{maxHoa:0}).score,0);
+assert.equal(match({...home,hoa:0},{maxHoa:0}).score,5);
+assert.ok(match(home,{city:'Orange',beds:3}).score<5);
+assert.deepEqual(match(home,{city:'Irvine',race:'ignored'}),match(home,{city:'Irvine'}));
+console.log('Preference scoring: 10 assertions passed.');

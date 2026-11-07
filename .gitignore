@@ -4,3 +4,5 @@ data/*.sqlite*
 data/*.partial
 __pycache__/
 data/source-page.html
+ui/node_modules/
+ui/.vite/
