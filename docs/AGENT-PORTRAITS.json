@@ -1,0 +1,18 @@
+{
+  "mode": "Built-in image_gen",
+  "assets": [
+    {
+      "path": "dist/assets/agents/maya.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: portrait photograph for a fictional real estate agent demo profile. Create a realistic professional head-and-shoulders portrait photograph of a fictional East Asian woman in her late 30s, dark shoulder-length hair, relaxed warm smile, cream blouse and charcoal blazer. No resemblance to any named real person. Modern Southern California real estate office, softly blurred warm beige architecture in background, soft natural window light. Editorial photography, natural skin texture, genuine approachable expression, understated professional styling, centered subject and entire hair/head visible, plenty of space above head, mid-chest visible. Portrait 4:5 composition suitable for crop to wide profile card. No text, no lettering, no watermark, no frame, no logos."
+    },
+    {
+      "path": "dist/assets/agents/jordan.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: portrait photograph for a fictional real estate agent demo profile. Create a realistic professional head-and-shoulders portrait photograph of a fictional Black man in his early 40s, short hair and neatly trimmed facial hair, friendly confident smile, navy blazer over light blue open-collar shirt. No resemblance to any named real person. Modern Southern California real estate office, softly blurred warm cream and pale wood architecture in background, soft natural window light. Editorial photography, natural skin texture, genuine approachable expression, understated professional styling, centered subject and entire hair/head visible, plenty of space above head, mid-chest visible. Portrait 4:5 composition suitable for crop to wide profile card. No text, no lettering, no watermark, no frame, no logos."
+    },
+    {
+      "path": "dist/assets/agents/sam.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: portrait photograph for a fictional real estate agent demo profile. Create a realistic professional head-and-shoulders portrait photograph of a fictional Latino man in his mid 40s, short wavy dark hair with subtle gray at temples, warm smile, olive-gray blazer over a white open-collar shirt. No resemblance to any named real person. Modern Southern California real estate office, softly blurred cream architecture and plants in background, soft natural window light. Editorial photography, natural skin texture, genuine approachable expression, understated professional styling, centered subject and entire hair/head visible, plenty of space above head, mid-chest visible. Portrait 4:5 composition suitable for crop to wide profile card. No text, no lettering, no watermark, no frame, no logos."
+    }
+  ],
+  "disclosure": "These are generated portraits of fictional demo characters, not photographs of real agents."
+}
