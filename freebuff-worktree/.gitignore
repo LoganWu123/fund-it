@@ -1,0 +1,29 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# never commit personal information
+real-data/
+private/
+
+# tooling
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+.next/
+
+# local prototype database
+.data/
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
+*.zip
+
+# TypeScript incremental build cache
+*.tsbuildinfo
