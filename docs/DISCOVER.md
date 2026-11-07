@@ -50,3 +50,8 @@ window.FUNDIT_PHOTOS['EXISTING_LISTING_ID'] = {
 ```
 
 The original hosted Site ID in `.openai/hosting.json` returned `project_not_found` through the current Sites connection. Its identity was preserved. This change is provided as a local preview and Git feature branch; no replacement Site was created and no deployment is claimed.
+
+
+## Photo-only update
+
+Discover now shows only exact-property photo-backed homes (146 Orchard and 306 Orange Blossom). The full text dataset remains in Listings. Agent cards use locally bundled, AI-generated photo-realistic portraits of fictional people; there are no initials or sample overlays. Disclosure remains below the deck and in agent details. Saved thumbnails use the same portraits.

@@ -1,6 +1,14 @@
 /* Exact-address research. Photos are linked to source pages, never assigned by resemblance.
  * Images remain on the provider CDN; their rights do not inherit the CSV's CC0 license. */
 window.FUNDIT_PHOTOS = {
+  stp_X1NR0dWd1n: {
+    address: '306 Orange Blossom, Irvine, CA 92618',
+    imageUrl: 'https://cdn.listingphotos.sierrastatic.com/large/v1793993431/10/10_NP26164643_01.jpg',
+    sourceUrl: 'https://www.activerealty.com/property-search/detail/10/NP26164643/306-orange-blossom-irvine-ca-92618/',
+    provider: 'Active Realty / CRMLS', addressVerified: true, displayEnabled: true,
+    checkedAt: '2026-11-07', httpStatus: 200,
+    statusNote: 'Exact-address photo verified. Price is from the October snapshot; confirm current availability.'
+  },
   stp_E1q6meVAzo: {
     address: '40 Tangerine, Irvine, CA 92618',
     sourceUrl: 'https://www.realtor.com/realestateandhomes-detail/40-Tangerine_Irvine_CA_92618_M23387-28365',
