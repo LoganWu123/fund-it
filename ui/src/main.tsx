@@ -5,6 +5,7 @@ import {House, KeyRound, Handshake, ShieldCheck, MapPin, Landmark, Heart, Trees,
 import {TextAnimate} from './components/ui/text-animate';
 import {IconCloud} from './components/ui/icon-cloud';
 import {Globe} from './components/ui/globe';
+import type {COBEOptions} from 'cobe';
 
 function Heading() {
   const reduced=useReducedMotion();
@@ -21,7 +22,8 @@ function HousingCloud() {
 }
 function HousingGlobe() {
   const [paused,setPaused]=useState(false);
-  return <><span className="globe-word" aria-hidden="true">Possibility.</span><Globe paused={paused} config={{width:600,height:600,onRender:()=>{},devicePixelRatio:1.5,phi:4.3,theta:0.28,dark:0,diffuse:0.6,mapSamples:16000,mapBrightness:5,baseColor:[0.9,0.92,0.86],markerColor:[0.63,0.44,0.78],glowColor:[0.97,0.98,0.95],markers:[{location:[33.72,-117.83],size:0.09}],scale:1.1}}/><button className="globe-pause" onClick={()=>setPaused(p=>!p)} aria-label={paused?'Play globe animation':'Pause globe animation'}>{paused?'▷':'Ⅱ'}</button><span className="globe-caption">ORANGE COUNTY, CALIFORNIA · 33.72° N, 117.83° W</span></>;
+  const config=useMemo<COBEOptions>(()=>({width:600,height:600,onRender:()=>{},devicePixelRatio:1.5,phi:4.3,theta:0.28,dark:0,diffuse:0.6,mapSamples:16000,mapBrightness:5,baseColor:[0.94,0.95,0.93],markerColor:[0.63,0.44,0.78],glowColor:[0.91,0.9,0.93],markers:[{location:[33.72,-117.83],size:0.06}],scale:1.05}),[]);
+  return <><div className="globe-heading"><span className="globe-word" aria-hidden="true">Possibility.</span><button className="globe-pause" onClick={()=>setPaused(p=>!p)} aria-label={paused?'Play globe animation':'Pause globe animation'}>{paused?'▷':'Ⅱ'}</button></div><Globe paused={paused} config={config}/><span className="globe-caption">ORANGE COUNTY, CALIFORNIA<br/>33.72° N, 117.83° W</span></>;
 }
 const title=document.querySelector('#discoverAnimatedTitle');
 if(title) createRoot(title).render(<Heading/>);

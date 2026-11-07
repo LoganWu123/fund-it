@@ -69,3 +69,7 @@ Pins can include homes over budget or outside the preferred city so comparisons 
 Validation: Python importer/exporter tests, coordinate-integrity test, ten match-engine assertions, TypeScript checking, production bundle build and browser checks for real images, galleries, map ratings/popups/saving, review details, persistence, animation pause, mobile layout and console errors.
 
 The retained project ID in `.openai/hosting.json` returned `Sites project not found` through the current Sites connection. Its identity was preserved; no replacement Site or deployment is claimed. The local preview and feature branch are the deliverables until hosting access is restored.
+
+## Globe layout correction
+
+The overview globe uses a square responsive canvas with its heading, pause control and caption in separate grid rows. Drawing-buffer dimensions supply the shader resolution, so its pixel ratio remains consistent after resizing. ResizeObserver updates the renderer when its container changes. The memoized configuration preserves the WebGL instance when pausing; pointer capture supports rotation without losing the drag outside the canvas. Desktop and mobile layouts are checked for clipping and overlap.

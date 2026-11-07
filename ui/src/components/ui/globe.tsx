@@ -56,7 +56,6 @@ export function Globe({
   }, [])
   const widthRef = useRef(0)
   const pointerInteracting = useRef<number | null>(null)
-  const pointerInteractionMovement = useRef(0)
 
   const r = useMotionValue(0)
   const rs = useSpring(r, {
@@ -75,38 +74,42 @@ export function Globe({
   const updateMovement = (clientX: number) => {
     if (pointerInteracting.current !== null) {
       const delta = clientX - pointerInteracting.current
-      pointerInteractionMovement.current = delta
+      pointerInteracting.current = clientX
       r.set(r.get() + delta / MOVEMENT_DAMPING)
     }
   }
 
   useEffect(() => {
-    const onResize = () => {
-      if (canvasRef.current) {
-        widthRef.current = canvasRef.current.offsetWidth
-      }
-    }
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const pixelRatio = config.devicePixelRatio || 1
+    widthRef.current = canvas.getBoundingClientRect().width
 
-    window.addEventListener("resize", onResize)
-    onResize()
-
-    const globe = createGlobe(canvasRef.current!, {
+    const globe = createGlobe(canvas, {
       ...config,
-      width: widthRef.current * 2,
-      height: widthRef.current * 2,
+      width: Math.round(widthRef.current * pixelRatio),
+      height: Math.round(widthRef.current * pixelRatio),
       onRender: (state) => {
         if (pointerInteracting.current === null && !pausedRef.current) phiRef.current += 0.002
         state.phi = phiRef.current + rs.get()
-        state.width = widthRef.current * 2
-        state.height = widthRef.current * 2
+        // Use the actual drawing buffer, including its pixel ratio and rounding.
+        state.width = canvas.width
+        state.height = canvas.height
       },
     })
+
+    const resize = () => {
+      widthRef.current = canvas.getBoundingClientRect().width
+      globe.resize()
+    }
+    const observer = new ResizeObserver(resize)
+    observer.observe(canvas)
 
     const revealTimer = setTimeout(() => { if(canvasRef.current) canvasRef.current.style.opacity = "1" }, 0)
     return () => {
       clearTimeout(revealTimer)
+      observer.disconnect()
       globe.destroy()
-      window.removeEventListener("resize", onResize)
     }
   }, [rs, config])
 
@@ -125,15 +128,13 @@ export function Globe({
         role="img"
         ref={canvasRef}
         onPointerDown={(e) => {
-          pointerInteracting.current = e.clientX
+          e.currentTarget.setPointerCapture(e.pointerId)
           updatePointerInteraction(e.clientX)
         }}
         onPointerUp={() => updatePointerInteraction(null)}
-        onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e) => updateMovement(e.clientX)}
-        onTouchMove={(e) =>
-          e.touches[0] && updateMovement(e.touches[0].clientX)
-        }
+        onPointerCancel={() => updatePointerInteraction(null)}
+        onLostPointerCapture={() => updatePointerInteraction(null)}
+        onPointerMove={(e) => updateMovement(e.clientX)}
       />
     </div>
   )
