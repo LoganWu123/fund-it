@@ -1,0 +1,5 @@
+.DS_Store
+data/*.csv
+data/*.sqlite*
+data/*.partial
+__pycache__/

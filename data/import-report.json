@@ -1,0 +1,29 @@
+{
+  "rows_read": 925083,
+  "not_for_sale": 911940,
+  "imported_rows": 12995,
+  "invalid_rows": 145,
+  "outside_area": 3,
+  "source_status_counts": {
+    "off_market": 819727,
+    "other": 37225,
+    "active": 13568,
+    "sold": 53765,
+    "coming_soon": 630,
+    "pending": 168
+  },
+  "listing_type_counts": {
+    "": 923846,
+    "auction": 155,
+    "coming_soon": 725,
+    "foreclosure": 34,
+    "new_construction": 279,
+    "fsbo": 43,
+    "bank_owned": 1
+  },
+  "unique_candidates": 12995,
+  "data_as_of": "2026-10",
+  "source": "https://realestatedataset.com/california/orange-county",
+  "license": "CC0-1.0",
+  "sha256": "3ceb52ca00ddf4949f7a3703c1585728902e27f9e8df6b7c5fe6bb649d635cdf"
+}
