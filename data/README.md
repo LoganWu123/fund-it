@@ -1,6 +1,8 @@
 # Orange County listing import
 
-Downloaded from https://realestatedataset.com/california/orange-county on November 7, 2026. Publisher edition: October 2026. License: CC0-1.0, as stated at https://realestatedataset.com/license. Publisher describes monthly releases lagging live data by about 30–60 days; this is not a live MLS feed. The importer uses the free downloadable dataset rather than extracting commercial listing pages.
+Downloaded from https://realestatedataset.com/california/orange-county on November 7, 2026. Publisher edition: October 2026. License: CC0-1.0, verified at https://realestatedataset.com/license on November 7, 2026. Publisher describes monthly releases lagging live data by about 30–60 days; this is not a live MLS feed. The importer uses the free downloadable dataset rather than extracting commercial listing pages.
+
+A listing-source review is in [docs/LISTING-SOURCES.md](../docs/LISTING-SOURCES.md). It records the CC0 license check, why this downloadable CSV was chosen, and why HUD's public REO snapshot, Facebook Marketplace, Reddit, RentCast and CRMLS were not used for this import.
 
 `listings.sqlite` is a LOCAL SQLite database, not a database connected to the deployed static Site. No buyer information is imported or transmitted. The raw CSV and database are ignored by Git. The versioned `import-report.json` records actual import counts and SHA-256. Initial full import examined 925,083 records and retained 12,995 distinct source-marked active records with positive price and complete identity in California county 06059. Invalid rows, sold, pending, other, off-market and coming-soon categories are excluded. Land and special listing types remain identifiable in the database; records are not all verified residential sale listings.
 
