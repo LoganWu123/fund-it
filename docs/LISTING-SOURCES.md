@@ -17,13 +17,13 @@ note records the source choice and the other listing sources that were checked.
 | Records in downloaded CSV | 925,083 |
 | Records retained | 12,995 active, positive-price, complete-identity candidates |
 | Refresh | `python3 scripts/refresh_listings.py`; importer `scripts/import_listings.py` |
+| Static export | `python3 scripts/export_site_data.py` writes `dist/listings.js` for the static site. |
 | Not a live feed | Publisher describes monthly releases lagging live data by about 30–60 days |
 | Availability | `unverified_snapshot`; the source claims `active`, which is not the same as verified current availability |
 
 The importer keeps the source's status and listing type instead of inferring tenure. It does not
 copy photos or marketing descriptions, and it imports no buyer, owner, demographic or
-protected-characteristic data. `listings.sqlite` is local only; the deployed static `dist/` site
-does not query it.
+protected-characteristic data. `listings.sqlite` is local only. The static site reads a generated `dist/listings.js` snapshot; it does not query SQLite at runtime.
 
 ## Why this source
 

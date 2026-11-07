@@ -6,6 +6,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from import_listings import ROOT, SOURCE, run
+from export_site_data import export_site_data
 import json
 
 class Links(HTMLParser):
@@ -43,4 +44,5 @@ if __name__=='__main__':
     report=run(partial,data/'listings.sqlite',match[1])
     partial.replace(data/'orange-county.csv')
     (data/'import-report.json').write_text(json.dumps(report,indent=2)+'\n')
+    export_site_data(data/'listings.sqlite', ROOT/'dist/listings.js')
     print(json.dumps(report,indent=2))

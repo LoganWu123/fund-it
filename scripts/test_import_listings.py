@@ -22,11 +22,14 @@ class ImportTests(unittest.TestCase):
             self.assertEqual(run(path,db,'2026-11')['unique_candidates'],0)
             with sqlite3.connect(db) as c:
                 self.assertEqual(c.execute('select availability from listings').fetchone()[0],'not_in_latest_snapshot')
+            c.close()
     def test_schema_failure_rolls_back(self):
         with tempfile.TemporaryDirectory() as tmp:
             path,db=Path(tmp)/'bad.csv',Path(tmp)/'db.sqlite'
             path.write_text('id,street\n1,Main\n')
             with self.assertRaises(ValueError):run(path,db,'2026-10')
-            with sqlite3.connect(db) as c:self.assertEqual(c.execute('select count(*) from import_runs').fetchone()[0],0)
+            with sqlite3.connect(db) as c:
+                self.assertEqual(c.execute('select count(*) from import_runs').fetchone()[0],0)
+            c.close()
 
 if __name__=='__main__':unittest.main()

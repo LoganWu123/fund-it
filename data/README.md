@@ -2,7 +2,7 @@
 
 Downloaded from https://realestatedataset.com/california/orange-county on November 7, 2026. Publisher edition: October 2026. License: CC0-1.0, verified at https://realestatedataset.com/license on November 7, 2026. Publisher describes monthly releases lagging live data by about 30–60 days; this is not a live MLS feed. The importer uses the free downloadable dataset rather than extracting commercial listing pages.
 
-A listing-source review is in [docs/LISTING-SOURCES.md](../docs/LISTING-SOURCES.md). It records the CC0 license check, why this downloadable CSV was chosen, and why HUD's public REO snapshot, Facebook Marketplace, Reddit, RentCast and CRMLS were not used for this import.
+A listing-source review is in [docs/LISTING-SOURCES.md](../docs/LISTING-SOURCES.md). It records the CC0 license check, why this downloadable CSV was chosen, and why HUD's public REO snapshot, Facebook Marketplace, Reddit, RentCast and CRMLS were not used for this import. The static site reads a generated [dist/listings.js](../dist/listings.js) snapshot; it does not query SQLite at runtime.
 
 `listings.sqlite` is a LOCAL SQLite database, not a database connected to the deployed static Site. No buyer information is imported or transmitted. The raw CSV and database are ignored by Git. The versioned `import-report.json` records actual import counts and SHA-256. Initial full import examined 925,083 records and retained 12,995 distinct source-marked active records with positive price and complete identity in California county 06059. Invalid rows, sold, pending, other, off-market and coming-soon categories are excluded. Land and special listing types remain identifiable in the database; records are not all verified residential sale listings.
 
@@ -12,6 +12,7 @@ From the project directory:
 
 ```sh
 python3 scripts/refresh_listings.py
+python3 scripts/export_site_data.py
 python3 -m unittest discover -s scripts -p 'test_*.py'
 ```
 
@@ -32,4 +33,4 @@ ORDER BY list_price;
 
 This only produces research candidates, not purchase recommendations. Verify tenure (sale vs rent), availability, price, condition, HOA and financing eligibility before matching. The source does not include a reliable explicit sale/rent field or property-specific public listing URL; source_status and listing_type preserve what the publisher actually reports. Four retained records have prices below $10,000; treat such values as anomalies, not affordable purchase opportunities. Unknown HOA is NULL, never assumed zero. Land, auction and foreclosure records need separate review. No photos or marketing descriptions are copied.
 
-Matching should use buyer-selected budgets, cities, home features and verified program requirements. Do not rank or steer using race, religion, national origin, sex, disability, marital/familial status, neighborhood demographic composition or proxies. Household size may be used only where a specific assistance program requires it; bedroom preferences should be stated by the buyer. The listing database contains no demographic or owner identity data. No matching engine or hosted database has been added by this import.
+Matching should use buyer-selected budgets, cities, home features and verified program requirements. Do not rank or steer using race, religion, national origin, sex, disability, marital/familial status, neighborhood demographic composition or proxies. Household size may be used only where a specific assistance program requires it; bedroom preferences should be stated by the buyer. The listing database contains no demographic or owner identity data. The static site adds a filterable listing browser; it does not make eligibility decisions or query the local database.
